@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>File Upload</h2>
+
+				<div class="alert alert-success alert-dismissible fade show"
+					role="alert" th:if="${successmessage}">
+					<strong th:text="${successmessage}"></strong> 
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="alert alert-danger alert-dismissible fade show"
+					role="alert" th:if="${errormessage}">
+					<strong th:text="${errormessage}"></strong> 
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<form action="" th:action="@{'/fileupload'}" th:object="${user}"
+					method="POST" enctype='multipart/form-data'>
+					<div class="form-group">
+						<label for="fileupload">Upload(Excel or CSV or JSON)</label> <input
+							type="file" class="form-control" id="file" name="file"
+							th:field="*{file}" aria-describedby="emailHelp">
+					</div>
+
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+
+			</div>
+
+			<div class="col-md-12">
+				<h2>All Users</h2>
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">FirstName</th>
+							<th scope="col">LastName</th>
+							<th scope="col">Email</th>
+							<th scope="col">PhoneNumber</th>
+							<th scope="col">FileType</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user: ${users}">
+							<td th:text="${user.id}" />
+							<td th:text="${user.firstName}" />
+							<td th:text="${user.lastName}" />
+							<td th:text="${user.email}" />
+							<td th:text="${user.phoneNumber}" />
+							<td th:text="${user.fileType}" />
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+</body>
+</html>
